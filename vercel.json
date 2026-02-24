@@ -8,9 +8,5 @@
     "src/app/api/**/*.ts": {
       "maxDuration": 10
     }
-  },
-  "env": {
-    "NEXTAUTH_URL": "https://your-app.vercel.app",
-    "NEXTAUTH_SECRET": "@nextauth-secret"
   }
 }
