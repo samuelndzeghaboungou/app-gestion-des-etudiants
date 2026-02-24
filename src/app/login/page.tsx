@@ -108,7 +108,7 @@ export default function LoginPage() {
           {/* Footer */}
           <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
             <p className="text-center text-gray-600 text-sm">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link href="/register" className="font-semibold text-blue-600 hover:text-blue-700">
                 Sign up
               </Link>
