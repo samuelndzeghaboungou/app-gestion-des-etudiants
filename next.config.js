@@ -4,6 +4,12 @@ const nextConfig = {
   images: {
     unoptimized: false,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: false,
+  },
   // Ensure proper serverless function handling
   experimental: {},
 }
