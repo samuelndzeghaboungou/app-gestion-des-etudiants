@@ -1,8 +1,8 @@
 'use client';
 
-import { signIn, useSession } from 'next-auth/react';
-import { useState, useEffect, FormEvent, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
+import { useState, FormEvent, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { FiMail, FiLock } from 'react-icons/fi';
 
@@ -12,18 +12,9 @@ function LoginForm() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const { data: session, status } = useSession();
   const authError = searchParams.get('error');
   const callbackUrl = searchParams.get('callbackUrl') || '/';
   const displayError = error || (authError ? "L'identifiant ou le mot de passe est incorrect" : '');
-
-  // Redirect if already authenticated
-  useEffect(() => {
-    if (status === 'authenticated') {
-      window.location.href = callbackUrl;
-    }
-  }, [status, callbackUrl]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,8 +31,7 @@ function LoginForm() {
       if (result?.error) {
         setError("L'identifiant ou le mot de passe est incorrect");
         setLoading(false);
-      } else {
-        // Use window.location for a full page navigation so middleware runs fresh
+      } else if (result?.ok) {
         window.location.href = callbackUrl;
       }
     } catch (err) {
@@ -49,15 +39,6 @@ function LoginForm() {
       setLoading(false);
     }
   };
-
-  // Show loading while checking session
-  if (status === 'loading') {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
