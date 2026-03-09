@@ -21,9 +21,9 @@ function LoginForm() {
   // Redirect if already authenticated
   useEffect(() => {
     if (status === 'authenticated') {
-      router.replace(callbackUrl);
+      window.location.href = callbackUrl;
     }
-  }, [status, router, callbackUrl]);
+  }, [status, callbackUrl]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

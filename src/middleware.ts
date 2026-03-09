@@ -2,7 +2,7 @@ import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 // Must match the secret used in src/lib/auth.ts
-const AUTH_SECRET = process.env.NEXTAUTH_SECRET;
+const AUTH_SECRET = process.env.NEXTAUTH_SECRET?.trim();
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
