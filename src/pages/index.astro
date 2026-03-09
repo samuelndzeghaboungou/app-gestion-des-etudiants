@@ -1,0 +1,8 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StudentApp from '../components/StudentApp';
+---
+
+<Layout title="Gestion des Étudiants">
+  <StudentApp client:only="react" />
+</Layout>

@@ -1,18 +1,10 @@
 # Dependencies
 node_modules
-/.pnp
-.pnp.js
 package-lock.json
 
-# Testing
-/coverage
-
-# Next.js
-/.next/
-/out/
-
-# Production
-/build
+# Astro
+dist/
+.astro/
 
 # Misc
 .DS_Store
