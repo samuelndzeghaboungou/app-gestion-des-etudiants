@@ -83,7 +83,7 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
-  secret: process.env.NEXTAUTH_SECRET || 'dev-secret-change-me',
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 export async function registerUser(name: string, email: string, password: string) {

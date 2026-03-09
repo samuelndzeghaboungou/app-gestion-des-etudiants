@@ -19,6 +19,7 @@ const nextConfig = {
         ? `https://${process.env.VERCEL_URL}`
         : 'http://localhost:3000'
     ),
+    NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
   },
 }
 
