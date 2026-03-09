@@ -4,16 +4,21 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Allow access to login and register pages without auth
-  if (pathname.startsWith('/login') || pathname.startsWith('/register')) {
-    return NextResponse.next();
-  }
-
   // Check for valid session token
   const token = await getToken({
     req,
     secret: process.env.NEXTAUTH_SECRET,
   });
+
+  // If user is authenticated and tries to access login/register, redirect to home
+  if (token && (pathname.startsWith('/login') || pathname.startsWith('/register'))) {
+    return NextResponse.redirect(new URL('/', req.url));
+  }
+
+  // Allow access to login and register pages without auth
+  if (pathname.startsWith('/login') || pathname.startsWith('/register')) {
+    return NextResponse.next();
+  }
 
   // Redirect to login if no token
   if (!token) {
