@@ -1,13 +1,16 @@
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
+// Must match the secret used in src/lib/auth.ts
+const AUTH_SECRET = process.env.NEXTAUTH_SECRET || 'dev-secret-change-me';
+
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Check for valid session token
   const token = await getToken({
     req,
-    secret: process.env.NEXTAUTH_SECRET,
+    secret: AUTH_SECRET,
   });
 
   // If user is authenticated and tries to access login/register, redirect to home

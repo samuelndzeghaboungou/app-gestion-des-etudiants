@@ -41,7 +41,8 @@ function LoginForm() {
         setError("L'identifiant ou le mot de passe est incorrect");
         setLoading(false);
       } else {
-        router.replace(callbackUrl);
+        // Use window.location for a full page navigation so middleware runs fresh
+        window.location.href = callbackUrl;
       }
     } catch (err) {
       setError("L'identifiant ou le mot de passe est incorrect");

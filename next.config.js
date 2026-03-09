@@ -12,6 +12,14 @@ const nextConfig = {
   },
   // Ensure proper serverless function handling
   experimental: {},
+  // Auto-detect NEXTAUTH_URL on Vercel
+  env: {
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL || (
+      process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : 'http://localhost:3000'
+    ),
+  },
 }
 
 module.exports = nextConfig
