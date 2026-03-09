@@ -6,37 +6,11 @@ import { studentService } from '@/lib/studentService';
 import { FiEdit2, FiTrash2, FiUsers } from 'react-icons/fi';
 
 export default function StudentList() {
-  const [students, setStudents] = useState<Student[]>([
-    {
-      id: '1',
-      firstName: 'Jean',
-      lastName: 'Dupont',
-      email: 'jean.dupont@example.com',
-      phone: '06 12 34 56 78',
-      dateOfBirth: '2000-05-15',
-      enrollmentDate: '2022-09-01',
-      major: 'Computer Science',
-      gpa: 3.8,
-      status: 'active',
-    },
-    {
-      id: '2',
-      firstName: 'Marie',
-      lastName: 'Martin',
-      email: 'marie.martin@example.com',
-      phone: '07 23 45 67 89',
-      dateOfBirth: '2001-03-20',
-      enrollmentDate: '2022-09-01',
-      major: 'Engineering',
-      gpa: 3.9,
-      status: 'active',
-    },
-  ]);
-  const [loading, setLoading] = useState(false);
+  const [students, setStudents] = useState<Student[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Optionally load from API later
-    // loadStudents();
+    loadStudents();
   }, []);
 
   const loadStudents = async () => {
